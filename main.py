@@ -57,16 +57,18 @@ def quadratic_multiply(x, y):
 
 
 def _quadratic_multiply(x, y):
-  # base case
-  if x.decimal_val <= 1 and y.decimal_val <= 1:
-    return BinaryNumber(x.decimal_val * y.decimal_val)
-  else:
+
     # obtain the xvec and yvec, the binary values of x and y
     xvec = x.binary_vec
     yvec = y.binary_vec
 
     # pad the xvec and yvec with leading 0s if not even number of bits
     xvec, yvec = pad(xvec, yvec)
+    print(xvec, yvec)
+  
+  # base case
+    if x.decimal_val <= 1 and y.decimal_val <= 1:
+      return BinaryNumber(x.decimal_val * y.decimal_val)
 
     # Otherwise, split xvec and yvec into halves each
     x_left, x_right = split_number(xvec)
@@ -93,13 +95,14 @@ def _quadratic_multiply(x, y):
 def test_quadratic_multiply(x, y, f):
   start = time.time()
   # multiply two numbers x, y using function f
-
+  
   # not entirely sure where to implement this - Sofia
-  f(x, y)
+  _quadratic_multiply(x, y)
   return (time.time() - start) * 1000
+
 
 
 print(quadratic_multiply(BinaryNumber(5), BinaryNumber(5)))
 print(
-    test_quadratic_multiply(BinaryNumber(5), BinaryNumber(5),
+    test_quadratic_multiply(BinaryNumber(3), BinaryNumber(5),
                             quadratic_multiply))
